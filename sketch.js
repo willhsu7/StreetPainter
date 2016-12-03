@@ -3,6 +3,8 @@ var can;
 var thewall;
 
 var canvas;
+var line1;
+var line2;
 
 function preload() {
   can = loadImage('./assets/can_painter.png');
@@ -27,12 +29,18 @@ function setup() {
 function draw() {
   //background(51);
 
-  if (mouseIsPressed) {
-    line(pmouseX, pmouseY, mouseX, mouseY);
+  if (mouseIsPressed) { //draw the line
+    
+    line1=line(pmouseX, pmouseY, mouseX, mouseY);
+    strokeWeight(30);
+    fill(242,25,5);
+    
+    line2=line(pmouseX, pmouseY, mouseX, mouseY);
     strokeWeight(15);
+    fill(254, 203,47);
   } // draw the line
   
-  //image(can, mouseX, mouseY);
+  image(can, mouseX, mouseY);
 
   /*ellipse(mouseX, mouseY,26, 26);
   
