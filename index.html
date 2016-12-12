@@ -18,7 +18,6 @@
       padding: 0;
       margin: 0;
     }
-    
     canvas {
       vertical-align: top;
     }
@@ -29,7 +28,28 @@
   <h1 style="text-align:center;font-family:verdana;"> Street Painter </h1>
 
   <!--<img src="./assets/shanghai-bicycle-street-photography.jpg" alt="Mountain View" style="width:304px;height:228px;"> -->
+  <!-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAZl5MK8OWAPexNhbln2rcP1-quo856SRQ"></script>
+ --> 
+ 
+ <!-- Adding Google Maps  -->
+  <div id="map" style="width:100%;height:500px"></div>
 
+  <script>
+    function myMap() {
+      var mapCanvas = document.getElementById("map");
+      var mapOptions = {
+        center: new google.maps.LatLng(40.693466, -73.986070),
+        zoom: 30,
+        mapTypeId: google.maps.MapTypeId.HYBRID
+      };
+      var map = new google.maps.Map(mapCanvas, mapOptions);
+    }
+  </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script> 
+ <!-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAZl5MK8OWAPexNhbln2rcP1-quo856SRQ"></script>-->
+
+ 
 </body>
 
 </html>
