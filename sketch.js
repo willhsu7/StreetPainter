@@ -1,10 +1,13 @@
 var can;
-var thewall;
-var c; //stroke colors 
 var lineSizeSlider; // switch the strokeWeight of drawing line
-var snapbutton;
+var c; //stroke colors 
+
+//scenes&background
+var thewall;
 var grafsound;
 var nyutandon;
+var nyt;
+
 var topbackground;
 var police; 
 var xpos = -100; //position for the police
@@ -14,6 +17,7 @@ function preload() {
   can = loadImage('./assets/can_painter.png');
   thewall = loadImage('./assets/shanghai-bicycle-street-photography.jpg');
   nyutandon = loadImage('./assets/tandonnyu.jpg');
+  nyt = loadImage('./assets/nyt.jpg');
   police = loadImage('./assets/police.png')
   grafsound = loadSound('./assets/GRAFFITI_SOUND.mp3');
  
@@ -32,18 +36,24 @@ function setup() {
   button.size(100, 50);
   button.position(10, 150);
   
+  
   lineSizeSlider = createSlider(20, 70, 20);//create a slider(min, max, default value)
   lineSizeSlider.position(110, 150);
-
-  snapbutton = createButton('snap the street view'); // button for screen shot 
+  
+  var snapbutton = createButton('snap the street view'); // button for screen shot 
   snapbutton.position(10, 200);
   snapbutton.size(100, 50);
   snapbutton.mousePressed(snapCanvas);
   
-  var changebackground = createButton('Other Scenes'); //change scenes to draw 
+  var changebackground = createButton('NYU Tandon'); //change scenes to draw 
   changebackground.mousePressed(newScenes);
   changebackground.position(10, 250);
   changebackground.size(100, 50);
+  
+  var changebackground2 = createButton('New York Times'); //change scenes to draw 
+  changebackground2.mousePressed(newScenesNYT);
+  changebackground2.position(10, 300);
+  changebackground2.size(100, 50);
 }
 
 function resetSketch() { // function to clear & reset the sketch canvas  
@@ -57,6 +67,10 @@ function resetSketch() { // function to clear & reset the sketch canvas
 
 function newScenes(){
   image(nyutandon, 0, 350);
+}
+
+function newScenesNYT(){
+  image(nyt, 0, 350);
 }
 
 function snapCanvas() { // screen shot the canvas 
