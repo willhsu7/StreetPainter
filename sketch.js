@@ -4,43 +4,64 @@ var c; //stroke colors
 var lineSizeSlider; // switch the strokeWeight of drawing line
 var snapbutton;
 var grafsound;
-
-//Google Maps API Key: AIzaSyAZl5MK8OWAPexNhbln2rcP1-quo856SRQ
+var nyutandon;
+var topbackground;
+var police; 
+var xpos = -100; //position for the police
 
 function preload() {
+  topbackground = loadImage('./assets/topbackground.png');
   can = loadImage('./assets/can_painter.png');
   thewall = loadImage('./assets/shanghai-bicycle-street-photography.jpg');
+  nyutandon = loadImage('./assets/tandonnyu.jpg');
+  police = loadImage('./assets/police.png')
   grafsound = loadSound('./assets/GRAFFITI_SOUND.mp3');
+ 
 } //load the images & audio 
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  //createCanvas(windowWidth, windowHeight);
+  createCanvas(1150, 1150);
   background(200);
 
   resetSketch(); // reset the canvas 
   image(thewall, 0, 350);
+
   var button = createButton("clear the canvas"); //create the clear button
   button.mousePressed(resetSketch);
   button.size(100, 50);
-  //create a slider(min, max, default value)
-  lineSizeSlider = createSlider(10, 70, 20);
+  button.position(10, 150);
+  
+  lineSizeSlider = createSlider(20, 70, 20);//create a slider(min, max, default value)
+  lineSizeSlider.position(110, 150);
 
-  snapbutton = createButton('snap the street view');
-  snapbutton.position(0, 650);
+  snapbutton = createButton('snap the street view'); // button for screen shot 
+  snapbutton.position(10, 200);
   snapbutton.size(100, 50);
   snapbutton.mousePressed(snapCanvas);
+  
+  var changebackground = createButton('Other Scenes'); //change scenes to draw 
+  changebackground.mousePressed(newScenes);
+  changebackground.position(10, 250);
+  changebackground.size(100, 50);
 }
 
 function resetSketch() { // function to clear & reset the sketch canvas  
-  canvas = createCanvas(windowWidth, windowHeight);
+  //canvas = createCanvas(windowWidth, windowHeight);
+  canvas = createCanvas(1150, 1150);
   canvas.position(0, 0);
   canvas.style('z-index', '-1');
   background(200);
   image(thewall, 0, 350);
 }
 
-function snapCanvas() {
-  saveCanvas('Streetview', 'jpg');
+function newScenes(){
+  image(nyutandon, 0, 350);
+}
+
+function snapCanvas() { // screen shot the canvas 
+  
+  saveCanvas('Streetview.jpg', 'jpg');
 }
 
 function draw() {
@@ -53,10 +74,19 @@ function draw() {
   fill(0);
   text("Draw whatever you love! Press the keys on your keyboard to change the colors, have fun!", 10, 130);
   textSize(20);
+  
+  image(topbackground, 0);
+  
+  xpos = xpos +2; 
+  image(police, xpos, 100);
+     if(xpos > width)
+  { 
+    xpos = -10;
+  } //reset the position  
+  
   //image(thewall, 0, 150);
 
   //image(can, mouseX, mouseY);
-
   /*ellipse(mouseX, mouseY,26, 26);
   can.position.x = mouseX;
   can.position.y = mouseY;
