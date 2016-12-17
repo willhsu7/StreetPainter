@@ -11,6 +11,7 @@ var nyt;
 var topbackground;
 var police; 
 var xpos = -100; //position for the police
+var worldmap; 
 
 function preload() {
   topbackground = loadImage('./assets/topbackground.png');
@@ -18,7 +19,8 @@ function preload() {
   thewall = loadImage('./assets/shanghai-bicycle-street-photography.jpg');
   nyutandon = loadImage('./assets/tandonnyu.jpg');
   nyt = loadImage('./assets/nyt.jpg');
-  police = loadImage('./assets/police.png')
+  police = loadImage('./assets/police.png');
+  worldmap = loadImage('./assets/worldmap.jpg');
   grafsound = loadSound('./assets/GRAFFITI_SOUND.mp3');
  
 } //load the images & audio 
@@ -47,13 +49,13 @@ function setup() {
   
   var changebackground = createButton('NYU Tandon'); //change scenes to draw 
   changebackground.mousePressed(newScenes);
-  changebackground.position(10, 250);
-  changebackground.size(100, 50);
+  changebackground.position(470, 90);
+  changebackground.size(50, 50);
   
   var changebackground2 = createButton('New York Times'); //change scenes to draw 
   changebackground2.mousePressed(newScenesNYT);
-  changebackground2.position(10, 300);
-  changebackground2.size(100, 50);
+  changebackground2.position(500, 140);
+  changebackground2.size(50, 50);
 }
 
 function resetSketch() { // function to clear & reset the sketch canvas  
@@ -90,6 +92,7 @@ function draw() {
   textSize(20);
   
   image(topbackground, 0);
+  image(worldmap, 340, 50);
   
   xpos = xpos +2; 
   image(police, xpos, 100);
