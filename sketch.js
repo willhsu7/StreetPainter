@@ -8,6 +8,10 @@ var grafsound; //graffiti spray sounds
 var nyutandon;
 var nyt;
 var bowerymural;
+var halloffame;
+var rooftop;
+var subtunnel;
+var subway;
 
 var topbackground;
 var downbackground;
@@ -22,15 +26,19 @@ function preload() {
   downbackground = loadImage('./assets/downbackground.png');
   can = loadImage('./assets/can_painter.png');
   thewall = loadImage('./assets/shanghai-bicycle-street-photography.jpg');
-  nyutandon = loadImage('./assets/tandonnyu.jpg');
-  nyt = loadImage('./assets/nyt.jpg');
-  bowerymural = loadImage('./assets/BoweryMural.jpg')
-
+  nyutandon = loadImage('./assets/bushwick.jpg');
+  nyt = loadImage('./assets/audubon_mural_project.jpg');
+  bowerymural = loadImage('./assets/BoweryMural.jpg');
+  halloffame = loadImage('./assets/halloffame.jpg');
+  rooftop = loadImage('./assets/rooftop.jpg');
+  subtunnel = loadImage('./assets/subway_tunnel.jpg');
+  subway = loadImage('./assets/subway.jpg');
+  
   police = loadImage('./assets/police.png');
   worldmap = loadImage('./assets/worldmap.jpg');
   streetview = loadImage('Streetview.jpg');
   grafsound = loadSound('./assets/GRAFFITI_SOUND.mp3');
-  music = loadSound('./assets/DropItLikeItsHot.mp3')
+  //music = loadSound('./assets/DropItLikeItsHot.mp3')
 } //load the images & audio 
 
 function setup() {
@@ -38,7 +46,7 @@ function setup() {
   createCanvas(1150, 1150);
   background(200);
 
-  music.play(); //play the background music
+  //music.play(); //play the background music
   //music.loop();
 
   resetSketch(); // reset the canvas 
@@ -51,7 +59,7 @@ function setup() {
   button.position(10, 10);
 
 
-  lineSizeSlider = createSlider(20, 70, 20); //create a slider(min, max, default value)
+  lineSizeSlider = createSlider(5, 50, 10); //create a slider(min, max, default value)
   lineSizeSlider.position(10, 70);
 
   var snapbutton = createButton('snap the street view'); // button for screen shot 
@@ -60,21 +68,41 @@ function setup() {
   snapbutton.size(100, 50);
   snapbutton.mousePressed(snapCanvas);
 
-  var changebackground = createButton('NYU Tandon'); //change scenes to draw 
+  var changebackground = createButton('Bushwick Collective'); //change scenes to draw 
   changebackground.mousePressed(newScenes);
-  changebackground.position(610, 465);
-  changebackground.size(50, 30);
+  changebackground.position(710, 380);
+  changebackground.size(60, 40);
 
-  var changebackground2 = createButton('New York Times'); //change scenes to draw 
+  var changebackground2 = createButton('Audubon Mural'); //change scenes to draw 
   changebackground2.mousePressed(newScenesNYT);
   changebackground2.position(500, 200);
-  changebackground2.size(50, 40);
+  changebackground2.size(60, 40);
 
   var changebackground3 = createButton('Bowery Mural'); //change scenes to draw 
   changebackground3.mousePressed(newScenesBoweryMural);
   changebackground3.position(520, 270);
   changebackground3.size(40, 40);
 
+  var changebackground4 = createButton('Graffiti Hall of Fame');
+  changebackground4.mousePressed(newSceneshalloffame);
+  changebackground4.position(630, 105);
+  changebackground4.size(60, 40);
+
+  var changebackground5 = createButton('China Town Rooptop');
+  changebackground5.mousePressed(newScenesrooftop);
+  changebackground5.position(600, 305);
+  changebackground5.size(60, 40);
+  
+  var changebackground6 = createButton('Tunnel of Subway');
+  changebackground6.mousePressed(newScenestunnel);
+  changebackground6.position(550, 380);
+  changebackground6.size(60, 40);
+  
+  var changebackground7 = createButton('NY subway');
+  changebackground7.mousePressed(newScenessubway);
+  changebackground7.position(470, 380);
+  changebackground7.size(60, 40);
+  
   //image(streetview);
 }
 
@@ -86,8 +114,6 @@ function resetSketch() { // function to clear & reset the sketch canvas
   background(200);
   //image(thewall, 0, 400);
   image(downbackground, 0, 400);
- 
-  
 }
 
 function newScenes() {
@@ -102,9 +128,25 @@ function newScenesBoweryMural() {
   image(bowerymural, 0, 420);
 }
 
+function newSceneshalloffame() {
+  image(halloffame, 0, 420);
+}
+
+function newScenesrooftop(){
+  image(rooftop, 0, 420);
+}
+
+function newScenestunnel(){
+  image(subtunnel, 0, 420);
+}
+
+function newScenessubway(){
+  image(subway, 0, 420);
+}
+
 function snapCanvas() { // screen shot the canvas 
   saveCanvas('Streetview.jpg', 'jpg');
-   xpos = xpos + 2;
+  xpos = xpos + 2;
   image(police, xpos, 760);
   if (xpos > width) {
     xpos = 10;
@@ -124,7 +166,7 @@ function draw() {
   textSize(20);
   image(topbackground, 0);
   //image(worldmap, 340, 90);
-  
+
   //policeman.display();
   //policeman.run();
 }
@@ -142,8 +184,8 @@ if(mouseIsPressed){
 
 function mouseDragged() {
   var scribble = new Scribble(); // Create an instance: p5.scribble.js library
-  scribble.bowing = 2; // changes the bowing of lines
-  scribble.roughness = 4; // changes the roughness of lines
+  scribble.bowing = 1.5; // changes the bowing of lines
+  scribble.roughness = 2.5; // changes the roughness of lines
   scribble.scribbleLine(pmouseX, pmouseY, mouseX, mouseY);
   //line(pmouseX, pmouseY, mouseX, mouseY);
   //ellipse(mouseX, mouseY, 15, 15);
