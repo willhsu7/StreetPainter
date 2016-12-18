@@ -4,19 +4,22 @@ var c; //stroke colors
 
 //scenes&background
 var thewall;
-var grafsound;
+var grafsound; //graffiti spray sounds
 var nyutandon;
 var nyt;
 var bowerymural;
 
 var topbackground;
+var downbackground;
 var police;
-var xpos = -100; //position for the police
+var xpos = 10; //position for the police
 var worldmap;
-var streetview;
+var streetview; //the snapshot image
+var music; //background music
 
 function preload() {
   topbackground = loadImage('./assets/topbackground.png');
+  downbackground = loadImage('./assets/downbackground.png');
   can = loadImage('./assets/can_painter.png');
   thewall = loadImage('./assets/shanghai-bicycle-street-photography.jpg');
   nyutandon = loadImage('./assets/tandonnyu.jpg');
@@ -27,7 +30,7 @@ function preload() {
   worldmap = loadImage('./assets/worldmap.jpg');
   streetview = loadImage('Streetview.jpg');
   grafsound = loadSound('./assets/GRAFFITI_SOUND.mp3');
-
+  music = loadSound('./assets/DropItLikeItsHot.mp3')
 } //load the images & audio 
 
 function setup() {
@@ -35,9 +38,13 @@ function setup() {
   createCanvas(1150, 1150);
   background(200);
 
-  resetSketch(); // reset the canvas 
-  image(thewall, 0, 400);
+  music.play(); //play the background music
+  //music.loop();
 
+  resetSketch(); // reset the canvas 
+
+  //image(thewall, 0, 400);
+  image(downbackground, 0, 400);
   var button = createButton("clear the canvas"); //create the clear button
   button.mousePressed(resetSketch);
   button.size(100, 50);
@@ -77,8 +84,10 @@ function resetSketch() { // function to clear & reset the sketch canvas
   canvas.position(0, 0);
   canvas.style('z-index', '-1');
   background(200);
-  image(thewall, 0, 370);
-
+  //image(thewall, 0, 400);
+  image(downbackground, 0, 400);
+ 
+  
 }
 
 function newScenes() {
@@ -95,6 +104,12 @@ function newScenesBoweryMural() {
 
 function snapCanvas() { // screen shot the canvas 
   saveCanvas('Streetview.jpg', 'jpg');
+   xpos = xpos + 2;
+  image(police, xpos, 760);
+  if (xpos > width) {
+    xpos = 10;
+  } //reset the position  
+
 }
 
 function draw() {
@@ -108,19 +123,11 @@ function draw() {
   text("Draw whatever you love! Press the keys on your keyboard to change the colors, have fun!", 10, 130);
   textSize(20);
   image(topbackground, 0);
-  image(worldmap, 340, 90);
+  //image(worldmap, 340, 90);
   
-    xpos = xpos +2; 
-  image(police, xpos, 500);
-     if(xpos > width)
-  { 
-    xpos = -100;
-  } //reset the position  
-  
-
   //policeman.display();
   //policeman.run();
-  } 
+}
 
 //image(thewall, 0, 150);
 
@@ -170,14 +177,14 @@ function keyPressed() { //changing colors
     }
   }*/
 
-  /*function keyPressed() {
-    if (key == 'r' || key == 'R') { // red
-      c = color(242, 25, 5);
-    }
-    if (key == 'b' || key == 'B') { //blue
-      c = color(46, 136, 255);
-    }
-    if (key == 'g' || key == 'G') { //green
-      c = color(46, 218, 26);
-    }
-  }*/
+/*function keyPressed() {
+  if (key == 'r' || key == 'R') { // red
+    c = color(242, 25, 5);
+  }
+  if (key == 'b' || key == 'B') { //blue
+    c = color(46, 136, 255);
+  }
+  if (key == 'g' || key == 'G') { //green
+    c = color(46, 218, 26);
+  }
+}*/
