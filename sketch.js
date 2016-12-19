@@ -20,6 +20,7 @@ var xpos = 10; //position for the police
 var worldmap;
 var streetview; //the snapshot image
 var music; //background music
+var brush = 0;
 
 function preload() {
   topbackground = loadImage('./assets/topbackground.png');
@@ -67,7 +68,6 @@ function setup() {
   lineSizeSlider = createSlider(5, 50, 10); //create a slider(min, max, default value)
   lineSizeSlider.position(10, 70);
 
-
   var changebackground = createButton('Bushwick Collective'); //change scenes to draw 
   changebackground.mousePressed(newScenes);
   changebackground.position(710, 380);
@@ -106,15 +106,33 @@ function setup() {
   //image(streetview);
 
   //switching drawing effects
-  var linebutton = createButton('line brush');
-  linebutton.position(210, 10);
-  linebutton.size(50, 50);
-  //linebutton.mousePressed();
+  var scribblebutton = createButton('Scribble Brush');
+  scribblebutton.position(210, 10);
+  scribblebutton.size(50, 50);
+  scribblebutton.mousePressed(brush0);
 
-  var roundbutton = createButton('round brush');
-  roundbutton.position(260, 10);
+  var linebutton = createButton('Line Brush');
+  linebutton.position(260, 10);
+  linebutton.size(50, 50);
+  linebutton.mousePressed(brush1);
+
+  var roundbutton = createButton('Round Brush');
+  roundbutton.position(310, 10);
   roundbutton.size(50, 50);
-  //roundbutton.mousePressed();
+  roundbutton.mousePressed(brush2);
+
+}
+
+function brush0() {
+  brush = 0;
+}
+
+function brush1() {
+  brush = 1;
+}
+
+function brush2() {
+  brush = 2;
 }
 
 function resetSketch() { // function to clear & reset the sketch canvas  
@@ -195,12 +213,22 @@ if(mouseIsPressed){
 
 function mouseDragged() {
 
-  var scribble = new Scribble(); // Create an instance: p5.scribble.js library
+  /*var scribble = new Scribble(); // Create an instance: p5.scribble.js library
   scribble.bowing = 1.5; // changes the bowing of lines
   scribble.roughness = 2.5; // changes the roughness of lines
-  scribble.scribbleLine(pmouseX, pmouseY, mouseX, mouseY);
-  //line(pmouseX, pmouseY, mouseX, mouseY);
-  //ellipse(mouseX, mouseY, 15, 15);
+  scribble.scribbleLine(pmouseX, pmouseY, mouseX, mouseY);*/
+
+  if (brush == 1) {
+    line(pmouseX, pmouseY, mouseX, mouseY);
+  } else if (brush == 2) {
+    ellipse(mouseX, mouseY, 15, 15);
+  } else if (brush === 0) {
+    var scribble = new Scribble(); // Create an instance: p5.scribble.js library
+    scribble.bowing = 1.5; // changes the bowing of lines
+    scribble.roughness = 2.5; // changes the roughness of lines
+    scribble.scribbleLine(pmouseX, pmouseY, mouseX, mouseY);
+  }
+
   //strokeWeight(30);
   strokeWeight(lineSizeSlider.value());
   stroke(c, 0.5);
