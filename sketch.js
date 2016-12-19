@@ -33,12 +33,12 @@ function preload() {
   rooftop = loadImage('./assets/rooftop.jpg');
   subtunnel = loadImage('./assets/subway_tunnel.jpg');
   subway = loadImage('./assets/subway.jpg');
-  
+
   police = loadImage('./assets/police.png');
   worldmap = loadImage('./assets/worldmap.jpg');
   streetview = loadImage('Streetview.jpg');
   grafsound = loadSound('./assets/GRAFFITI_SOUND.mp3');
-  //music = loadSound('./assets/DropItLikeItsHot.mp3')
+  music = loadSound('./assets/DropItLikeItsHot.mp3')
 } //load the images & audio 
 
 function setup() {
@@ -46,7 +46,7 @@ function setup() {
   createCanvas(1150, 1150);
   background(200);
 
-  //music.play(); //play the background music
+  music.play(); //play the background music
   //music.loop();
 
   resetSketch(); // reset the canvas 
@@ -58,15 +58,15 @@ function setup() {
   button.size(100, 50);
   button.position(10, 10);
 
-
-  lineSizeSlider = createSlider(5, 50, 10); //create a slider(min, max, default value)
-  lineSizeSlider.position(10, 70);
-
   var snapbutton = createButton('snap the street view'); // button for screen shot 
   //snapbutton.position(10, 200);
   snapbutton.position(110, 10);
   snapbutton.size(100, 50);
   snapbutton.mousePressed(snapCanvas);
+
+  lineSizeSlider = createSlider(5, 50, 10); //create a slider(min, max, default value)
+  lineSizeSlider.position(10, 70);
+
 
   var changebackground = createButton('Bushwick Collective'); //change scenes to draw 
   changebackground.mousePressed(newScenes);
@@ -92,18 +92,29 @@ function setup() {
   changebackground5.mousePressed(newScenesrooftop);
   changebackground5.position(600, 305);
   changebackground5.size(60, 40);
-  
+
   var changebackground6 = createButton('Tunnel of Subway');
   changebackground6.mousePressed(newScenestunnel);
   changebackground6.position(550, 380);
   changebackground6.size(60, 40);
-  
+
   var changebackground7 = createButton('NY subway');
   changebackground7.mousePressed(newScenessubway);
   changebackground7.position(470, 380);
   changebackground7.size(60, 40);
-  
+
   //image(streetview);
+  
+  //switching drawing effects
+  var linebutton = createButton('line brush');
+  linebutton.position(210, 10);
+  linebutton.size(50, 50);
+  //linebutton.mousePressed();
+  
+  var roundbutton = createButton('round brush');
+  roundbutton.position(260, 10);
+  roundbutton.size(50, 50);
+  //roundbutton.mousePressed();
 }
 
 function resetSketch() { // function to clear & reset the sketch canvas  
@@ -132,22 +143,22 @@ function newSceneshalloffame() {
   image(halloffame, 0, 420);
 }
 
-function newScenesrooftop(){
+function newScenesrooftop() {
   image(rooftop, 0, 420);
 }
 
-function newScenestunnel(){
+function newScenestunnel() {
   image(subtunnel, 0, 420);
 }
 
-function newScenessubway(){
+function newScenessubway() {
   image(subway, 0, 420);
 }
 
 function snapCanvas() { // screen shot the canvas 
   saveCanvas('Streetview.jpg', 'jpg');
   xpos = xpos + 2;
-  image(police, xpos, 760);
+  image(police, xpos, 700);
   if (xpos > width) {
     xpos = 10;
   } //reset the position  
@@ -183,6 +194,7 @@ if(mouseIsPressed){
 //drawSprites();
 
 function mouseDragged() {
+
   var scribble = new Scribble(); // Create an instance: p5.scribble.js library
   scribble.bowing = 1.5; // changes the bowing of lines
   scribble.roughness = 2.5; // changes the roughness of lines
