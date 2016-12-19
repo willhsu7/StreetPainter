@@ -38,7 +38,7 @@ function preload() {
   worldmap = loadImage('./assets/worldmap.jpg');
   streetview = loadImage('Streetview.jpg');
   grafsound = loadSound('./assets/GRAFFITI_SOUND.mp3');
-  music = loadSound('./assets/DropItLikeItsHot.mp3')
+  //music = loadSound('./assets/DropItLikeItsHot.mp3')
 } //load the images & audio 
 
 function setup() {
@@ -46,7 +46,7 @@ function setup() {
   createCanvas(1150, 1150);
   background(200);
 
-  music.play(); //play the background music
+  //music.play(); //play the background music
   //music.loop();
 
   resetSketch(); // reset the canvas 
@@ -104,13 +104,13 @@ function setup() {
   changebackground7.size(60, 40);
 
   //image(streetview);
-  
+
   //switching drawing effects
   var linebutton = createButton('line brush');
   linebutton.position(210, 10);
   linebutton.size(50, 50);
   //linebutton.mousePressed();
-  
+
   var roundbutton = createButton('round brush');
   roundbutton.position(260, 10);
   roundbutton.size(50, 50);
@@ -211,10 +211,14 @@ function mousePressed() { //when mouse is pressed trigger graffiti sound
   grafsound.play();
   //grafsound.loop();
   grafsound.jump(11, 1); // jump(cueTime of the soundFile in seconds, duration in seconds)
+
 }
 
 function keyPressed() { //changing colors 
-  c = color(random(0, 255), random(0, 255), random(0, 255));
+  if (key == 'w' || key == 'W') { // white
+    c = color(255, 255, 255);
+  } else
+    c = color(random(0, 255), random(0, 255), random(0, 255));
 }
 
 //policeman
