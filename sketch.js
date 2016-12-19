@@ -195,7 +195,6 @@ function draw() {
   textSize(20);
   image(topbackground, 0);
   //image(worldmap, 340, 90);
-
   //policeman.display();
   //policeman.run();
 }
@@ -220,13 +219,17 @@ function mouseDragged() {
 
   if (brush == 1) {
     line(pmouseX, pmouseY, mouseX, mouseY);
+   
   } else if (brush == 2) {
-    ellipse(mouseX, mouseY, 15, 15);
+    ellipse(mouseX, mouseY, 20, 15);
+    noStroke();
+    
   } else if (brush === 0) {
     var scribble = new Scribble(); // Create an instance: p5.scribble.js library
     scribble.bowing = 1.5; // changes the bowing of lines
     scribble.roughness = 2.5; // changes the roughness of lines
     scribble.scribbleLine(pmouseX, pmouseY, mouseX, mouseY);
+
   }
 
   //strokeWeight(30);
